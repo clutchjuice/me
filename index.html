@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nyshad Williams</title>
+    <title>Nyshad Williams · Software Developer & Web Designer</title>
     <style>
         * {
             margin: 0;
@@ -13,48 +13,225 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            color: #e5e7eb;
+            background: #0b1220;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .site {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
             min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(11, 18, 32, 0.8);
+            backdrop-filter: saturate(180%) blur(8px);
+            border-bottom: 1px solid #1f2937;
+        }
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px 20px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+        }
+        .brand-wrap { display: flex; align-items: center; gap: 10px; }
+        .avatar-wrap { width: 34px; height: 34px; border-radius: 9999px; overflow: hidden; border: 1px solid #1f2937; }
+        .avatar { width: 100%; height: 100%; object-fit: cover; transform: scale(1.2); transform-origin: center; }
+        .brand {
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            color: #f1f5f9;
+        }
+        .tagline {
+            color: #94a3b8;
+            font-size: 14px;
         }
 
-        .container {
-            text-align: center;
-            padding: 2rem;
+        /* Intro */
+        .intro {
+            max-width: 1100px;
+            margin: 32px auto 0;
+            padding: 0 20px 8px;
         }
+        .intro h1 { font-size: 40px; font-weight: 800; letter-spacing: 0.2px; margin-bottom: 8px; }
+        .intro p { color: #94a3b8; max-width: 70ch; }
+        .badge { display: inline-block; padding: 6px 10px; font-size: 12px; border: 1px solid #1f2937; border-radius: 9999px; color: #e5e7eb; background: #111827; }
+        .buttons { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 10px; border: 1px solid #1f2937; color: #e5e7eb; background: #0f172a; transition: background 160ms ease, transform 160ms ease; }
+        .btn:hover { background: #172032; transform: translateY(-1px); }
+        .btn.secondary { background: transparent; }
 
-        h1 {
-            font-size: 4rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin: 0;
-            animation: fadeIn 1s ease-in;
+        /* Features */
+        .features { max-width: 1100px; margin: 28px auto 6px; padding: 0 20px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+        .feature { grid-column: span 6; background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 14px; }
+        .feature h3 { margin: 0 0 6px; font-size: 16px; }
+        .feature p { margin: 0; color: #94a3b8; }
+        .check { width: 18px; height: 18px; color: #22c55e; }
+        .feature-title { display: flex; align-items: center; gap: 8px; }
+
+        /* Gallery */
+        .gallery {
+            max-width: 1100px;
+            margin: 24px auto 48px;
+            padding: 0 20px;
+            /* Masonry layout using CSS columns */
+            column-count: 3;
+            column-gap: 16px;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            transition: transform 160ms ease, box-shadow 160ms ease;
+            height: auto;
+            /* Masonry item rules */
+            display: inline-block;
+            width: 100%;
+            margin: 0 0 16px; /* vertical spacing between cards */
+            break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+            -moz-column-break-inside: avoid;
         }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12); }
+        .thumb {
+            width: 100%;
+            height: auto; /* show full length of the screenshot */
+            display: block;
+            object-fit: contain; /* keep full image visible, no cropping */
+            background: #0f172a;
+            max-height: none; /* no upper limit */
+        }
+        .card-body { padding: 14px 14px 16px; }
+        .card-title { font-weight: 600; margin-bottom: 4px; color: #e5e7eb; }
+        .card-meta { font-size: 14px; color: #94a3b8; }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
+        /* Footer */
+        footer {
+            border-top: 1px solid #1f2937;
+            padding: 18px 20px;
+            color: #94a3b8;
+            background: #0b1220;
+        }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery { column-count: 3; }
+            .intro h1 { font-size: 34px; }
+        }
+        @media (max-width: 640px) {
+            .gallery { column-count: 1; }
+            .intro { margin-top: 20px; }
+            .intro h1 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Nyshad Williams</h1>
+    <div class="site">
+        <header>
+            <div class="header-inner">
+                <div class="brand-wrap">
+                    <div class="avatar-wrap">
+                        <img class="avatar" src="Images/IMG_8366.jpg" alt="Nyshad Williams profile photo">
+                    </div>
+                    <div class="brand">Nyshad Williams</div>
+                </div>
+                <div class="tagline">Software Developer + Web Designer</div>
+            </div>
+        </header>
+
+        <main>
+            <section class="intro" aria-label="Local Launch Package">
+                <span class="badge">🚀 Software Development & Web Design</span>
+                <h1>Custom software and standout web design for modern businesses.</h1>
+                <p>From polished marketing sites to bespoke web apps and automations, get solutions built for speed, reliability, and growth.</p>
+                <div class="buttons">
+                    <a class="btn" href="mailto:hello@nyshad.com?subject=Local%20Launch%20Package&body=Hi%20Nyshad%2C%20I%E2%80%99m%20interested%20in%20the%20Local%20Launch%20Package.">Get Started</a>
+                    <a class="btn secondary" href="#portfolio">See Recent Work</a>
+                </div>
+            </section>
+
+            <section class="features" aria-label="Services">
+                <div class="feature">
+                    <div class="feature-title">
+                        <svg class="check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <h3>Web Design</h3>
+                    </div>
+                    <p>Modern, mobile-first sites tailored to your brand, built for speed, accessibility, and clear conversion paths.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-title">
+                        <svg class="check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <h3>Software Development</h3>
+                    </div>
+                    <p>Custom web applications, automations, and integrations that streamline operations and connect your tools.</p>
+                </div>
+            </section>
+
+            <section id="portfolio" class="gallery" aria-label="Recent Work">
+                <article class="card">
+                    <div class="card-body">
+                        <div class="card-title">Indigo Road Realty</div>
+                        <div class="card-meta">Real estate website · 2025</div>
+                    </div>
+                    <img class="thumb" src="Images/screencapture-indigoroadrealty-2025-10-30-12_13_54.png" alt="Indigo Road Realty full page screenshot">
+                </article>
+                <article class="card">
+                    <div class="card-body">
+                        <div class="card-title">Zooom Website</div>
+                        <div class="card-meta">Framer site · 2025</div>
+                    </div>
+                    <img class="thumb" src="Images/screencapture-zooom-framer-website-2025-10-30-12_22_44.png" alt="Zooom website full page screenshot">
+                </article>
+                <article class="card">
+                    <div class="card-body">
+                        <div class="card-title">Junk Removal Rangers</div>
+                        <div class="card-meta">Service business site · 2025</div>
+                    </div>
+                    <img class="thumb" src="Images/screencapture-junkremovalrangers-2025-10-30-12_24_44.png" alt="Junk Removal Rangers full page screenshot">
+                </article>
+                <article class="card">
+                    <div class="card-body">
+                        <div class="card-title">Abest Roofing</div>
+                        <div class="card-meta">Roofing website · 2025</div>
+                    </div>
+                    <img class="thumb" src="Images/screencapture-abestroofing-2025-10-30-12_28_29.png" alt="Abest Roofing full page screenshot">
+                </article>
+                <article class="card">
+                    <div class="card-body">
+                        <div class="card-title">Joyce Rey</div>
+                        <div class="card-meta">Luxury real estate site · 2025</div>
+                    </div>
+                    <img class="thumb" src="Images/screencapture-joycerey-2025-10-30-12_16_10.png" alt="Joyce Rey full page screenshot">
+                </article>
+                <article class="card">
+                    <div class="card-body">
+                        <div class="card-title">Honest Renovators</div>
+                        <div class="card-meta">Remodeling company site · 2025</div>
+                    </div>
+                    <img class="thumb" src="Images/screencapture-honestrenovators-2025-10-30-12_32_23.png" alt="Honest Renovators full page screenshot">
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-inner">
+                <div>© <span id="year"></span> Nyshad Williams</div>
+                <div>
+                    <a href="mailto:hello@nyshad.com">Email</a>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
